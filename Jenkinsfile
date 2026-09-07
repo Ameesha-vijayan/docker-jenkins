@@ -65,7 +65,7 @@ pipeline {
         stage('5. Run Database Migrations') {
             steps {
                 sh '''
-                    docker compose exec -T web python manage.py migrate
+                    docker compose exec -T app python manage.py migrate
                 '''
             }
         }
