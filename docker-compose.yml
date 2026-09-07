@@ -1,7 +1,6 @@
 services:
   app:
-    build:
-      context: .
+    image: shibilbasith11/two-tier-todo:latest
     container_name: todo-app
     restart: always
     ports:
@@ -18,8 +17,6 @@ services:
     image: postgres:latest
     container_name: postgres
     restart: always
-    ports:
-      - "5432:5432"
     networks:
       - app-net
     volumes:
