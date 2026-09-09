@@ -1,83 +1,138 @@
+```css
 :root {
-  --ink: #1e2433;
+  --ink: #111827;
+  --ink-soft: #344054;
   --muted: #667085;
-  --accent: #7657e8;
-  --accent2: #3baedb;
-  --glass: rgba(255, 255, 255, 0.72);
-  --border: rgba(30, 36, 51, 0.10);
+
+  --accent: #2563eb;
+  --accent-dark: #1d4ed8;
+  --accent2: #06b6d4;
+
+  --bg: #f8fafc;
+  --surface: rgba(255, 255, 255, 0.78);
+  --surface-solid: #ffffff;
+
+  --border: rgba(15, 23, 42, 0.08);
+  --border-strong: rgba(15, 23, 42, 0.13);
+
+  --success: #10b981;
+  --danger: #ef4444;
 }
+
+/* =========================
+   BASE
+========================= */
 
 * {
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   min-height: 100vh;
+
   color: var(--ink);
-  font-family: Inter, system-ui, sans-serif;
+
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
 
   background:
     radial-gradient(
-      circle at 15% 10%,
-      rgba(157, 124, 255, 0.18),
-      transparent 32%
+      circle at 5% 0%,
+      rgba(37, 99, 235, 0.10),
+      transparent 30%
     ),
     radial-gradient(
-      circle at 85% 75%,
-      rgba(97, 215, 255, 0.16),
-      transparent 35%
+      circle at 95% 90%,
+      rgba(6, 182, 212, 0.09),
+      transparent 30%
     ),
-    #f5f7fc;
+    linear-gradient(
+      180deg,
+      #f8fafc 0%,
+      #f4f7fb 100%
+    );
 
   overflow-x: hidden;
 }
 
-body:before {
+body::before {
   content: "";
+
   position: fixed;
   inset: 0;
+
   pointer-events: none;
 
   background:
     linear-gradient(
       135deg,
-      rgba(255, 255, 255, 0.75),
-      transparent 45%
+      rgba(255, 255, 255, 0.8),
+      transparent 40%
     );
+
+  z-index: 0;
 }
 
-/* Main container */
+/* =========================
+   MAIN CONTAINER
+========================= */
 
 .app-shell {
   width: min(980px, 92%);
+
   margin: 0 auto;
+
   padding: 58px 0 80px;
+
   position: relative;
+
   z-index: 2;
 }
 
-/* Hero */
+/* =========================
+   HERO
+========================= */
 
 .hero {
   display: flex;
+
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 28px;
+
+  margin-bottom: 30px;
 }
 
 .eyebrow {
   font-size: 11px;
-  letter-spacing: 0.2em;
+
+  letter-spacing: 0.18em;
+
   color: var(--accent);
+
   font-weight: 800;
 }
 
 h1 {
-  margin: 9px 0 6px;
+  margin: 9px 0 7px;
+
   font-size: clamp(42px, 7vw, 72px);
-  letter-spacing: -0.07em;
-  line-height: 1;
+
+  letter-spacing: -0.065em;
+
+  line-height: 0.95;
+
+  font-weight: 800;
 }
 
 h1 span {
@@ -86,142 +141,201 @@ h1 span {
 
 .hero p {
   margin: 0;
+
   color: var(--muted);
+
+  font-size: 15px;
 }
 
-/* Hero cube */
+/* =========================
+   HERO ICON
+========================= */
 
 .hero-cube {
   width: 92px;
   height: 92px;
 
-  border: 1px solid rgba(118, 87, 232, 0.18);
-  border-radius: 28px;
-
   display: grid;
   place-items: center;
 
+  border-radius: 26px;
+
+  color: white;
+
   font-size: 38px;
-  color: var(--accent);
 
   background:
     linear-gradient(
-      145deg,
-      rgba(157, 124, 255, 0.20),
-      rgba(97, 215, 255, 0.12)
+      135deg,
+      #2563eb,
+      #06b6d4
     );
 
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.9),
-    0 25px 70px rgba(90, 70, 180, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.7);
 
-  transform: rotate(7deg);
+  box-shadow:
+    0 20px 45px rgba(37, 99, 235, 0.20),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+
+  transform: rotate(6deg);
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
-/* Glass cards */
+.hero-cube:hover {
+  transform: rotate(0deg) translateY(-3px);
+
+  box-shadow:
+    0 25px 55px rgba(37, 99, 235, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+/* =========================
+   GLASS / CARDS
+========================= */
 
 .glass {
-  background: var(--glass);
+  background: var(--surface);
 
   border: 1px solid var(--border);
 
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
 
   box-shadow:
-    0 20px 70px rgba(45, 55, 85, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.85);
+    0 12px 40px rgba(15, 23, 42, 0.055),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
-/* Stats */
+/* =========================
+   STATS
+========================= */
 
 .stats {
   display: grid;
+
   grid-template-columns: repeat(3, 1fr);
 
-  border-radius: 24px;
-  margin-bottom: 18px;
+  border-radius: 22px;
+
+  margin-bottom: 16px;
 
   overflow: hidden;
 }
 
 .stats div {
   padding: 20px 24px;
+
   border-right: 1px solid var(--border);
 }
 
 .stats div:last-child {
-  border: 0;
+  border-right: 0;
 }
 
 .stats strong {
   display: block;
+
   font-size: 28px;
+
+  letter-spacing: -0.03em;
+
+  font-weight: 750;
+
   color: var(--ink);
 }
 
 .stats span {
   color: var(--muted);
+
   font-size: 12px;
+
+  font-weight: 500;
 }
 
-/* Composer */
+/* =========================
+   TASK COMPOSER
+========================= */
 
 .composer {
-  padding: 16px;
-  border-radius: 24px;
+  padding: 14px;
+
+  border-radius: 22px;
+
   margin-bottom: 18px;
 }
 
 .composer form {
   display: grid;
+
   grid-template-columns: 1.1fr 1fr auto;
-  gap: 10px;
+
+  gap: 9px;
 }
 
-/* Inputs */
+/* =========================
+   INPUTS
+========================= */
 
 input {
   width: 100%;
 
-  border: 1px solid rgba(30, 36, 51, 0.08);
+  border: 1px solid var(--border-strong);
+
   outline: none;
 
-  border-radius: 15px;
+  border-radius: 14px;
 
-  padding: 15px 16px;
+  padding: 14px 16px;
 
   color: var(--ink);
 
-  background: rgba(255, 255, 255, 0.72);
+  background: rgba(255, 255, 255, 0.85);
 
   font: inherit;
 
-  box-shadow:
-    inset 0 1px 2px rgba(30, 36, 51, 0.03);
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
 }
 
 input::placeholder {
-  color: #98a1b2;
+  color: #98a2b3;
+}
+
+input:hover {
+  border-color: rgba(37, 99, 235, 0.20);
 }
 
 input:focus {
-  border-color: rgba(118, 87, 232, 0.45);
+  background: #ffffff;
+
+  border-color: rgba(37, 99, 235, 0.45);
 
   box-shadow:
-    0 0 0 4px rgba(118, 87, 232, 0.08),
-    0 4px 15px rgba(118, 87, 232, 0.06);
+    0 0 0 4px rgba(37, 99, 235, 0.08);
 }
 
-/* Button */
+/* =========================
+   BUTTON
+========================= */
 
 button {
   border: 0;
-  border-radius: 15px;
+
+  border-radius: 14px;
 
   padding: 0 21px;
 
   color: white;
+
   font-weight: 700;
 
   cursor: pointer;
@@ -230,60 +344,73 @@ button {
     linear-gradient(
       135deg,
       var(--accent),
-      #6244cf
+      var(--accent-dark)
     );
 
   box-shadow:
-    0 10px 30px rgba(118, 87, 232, 0.22);
+    0 8px 22px rgba(37, 99, 235, 0.20);
 
   transition:
     transform 0.2s ease,
-    box-shadow 0.2s ease;
+    box-shadow 0.2s ease,
+    filter 0.2s ease;
 }
 
 button:hover {
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+
+  filter: brightness(1.03);
 
   box-shadow:
-    0 14px 35px rgba(118, 87, 232, 0.28);
+    0 12px 28px rgba(37, 99, 235, 0.25);
 }
 
 button:active {
   transform: translateY(0);
 }
 
-/* Tasks */
+/* =========================
+   TASK LIST
+========================= */
 
 .tasks {
   display: grid;
-  gap: 12px;
+
+  gap: 11px;
 }
 
 .task {
   display: flex;
+
   align-items: center;
-  gap: 16px;
 
-  padding: 18px;
+  gap: 15px;
 
-  border-radius: 22px;
+  padding: 17px;
+
+  border-radius: 20px;
 
   transition:
     transform 0.2s ease,
     border-color 0.2s ease,
-    box-shadow 0.2s ease;
+    box-shadow 0.2s ease,
+    background 0.2s ease;
 }
 
 .task:hover {
   transform: translateY(-2px);
 
-  border-color: rgba(118, 87, 232, 0.22);
+  border-color: rgba(37, 99, 235, 0.16);
+
+  background: rgba(255, 255, 255, 0.88);
 
   box-shadow:
-    0 12px 35px rgba(45, 55, 85, 0.08);
+    0 12px 32px rgba(15, 23, 42, 0.07);
 }
 
-/* Checkbox */
+/* =========================
+   CHECKBOX
+========================= */
 
 .check {
   width: 34px;
@@ -291,33 +418,40 @@ button:active {
 
   flex: none;
 
-  border: 1px solid rgba(30, 36, 51, 0.15);
-
-  border-radius: 11px;
-
   display: grid;
+
   place-items: center;
 
-  color: var(--ink);
+  border: 1px solid rgba(15, 23, 42, 0.14);
+
+  border-radius: 10px;
+
+  color: var(--ink-soft);
 
   text-decoration: none;
 
-  background: rgba(255, 255, 255, 0.65);
+  background: #ffffff;
 
-  transition: 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    transform 0.2s ease;
 }
 
 .check:hover {
-  border-color: rgba(118, 87, 232, 0.35);
-  background: rgba(118, 87, 232, 0.06);
+  border-color: rgba(37, 99, 235, 0.35);
+
+  background: rgba(37, 99, 235, 0.05);
+
+  transform: scale(1.04);
 }
 
 .done .check {
   background:
     linear-gradient(
       135deg,
-      var(--accent),
-      var(--accent2)
+      #2563eb,
+      #06b6d4
     );
 
   border: 0;
@@ -325,16 +459,24 @@ button:active {
   color: white;
 }
 
-/* Task content */
+/* =========================
+   TASK CONTENT
+========================= */
 
 .task-copy {
   min-width: 0;
+
   flex: 1;
 }
 
 .task h2 {
   margin: 0 0 4px;
+
   font-size: 16px;
+
+  font-weight: 700;
+
+  letter-spacing: -0.01em;
 }
 
 .task p {
@@ -343,106 +485,158 @@ button:active {
   color: var(--muted);
 
   font-size: 13px;
+
+  line-height: 1.5;
 }
 
 .task small {
-  color: #929bad;
+  color: #98a2b3;
+
   font-size: 10px;
+
+  font-weight: 500;
 }
 
 .done h2 {
   text-decoration: line-through;
-  color: #9aa1b0;
+
+  color: #98a2b3;
 }
 
-/* Delete */
+/* =========================
+   DELETE
+========================= */
 
 .delete {
-  color: #98a1b2;
+  color: #98a2b3;
 
   text-decoration: none;
 
-  font-size: 27px;
+  font-size: 25px;
 
   padding: 4px 8px;
 
-  transition: 0.2s ease;
+  border-radius: 9px;
+
+  transition:
+    color 0.2s ease,
+    background 0.2s ease,
+    transform 0.2s ease;
 }
 
 .delete:hover {
-  color: #e35d6a;
+  color: var(--danger);
+
+  background: rgba(239, 68, 68, 0.07);
+
   transform: scale(1.05);
 }
 
-/* Empty state */
+/* =========================
+   EMPTY STATE
+========================= */
 
 .empty {
   text-align: center;
 
-  border-radius: 28px;
+  border-radius: 24px;
 
   padding: 55px 20px;
 }
 
 .empty-art {
   font-size: 50px;
+
   color: var(--accent);
 }
 
 .empty h2 {
   margin: 12px 0 6px;
+
+  letter-spacing: -0.02em;
 }
 
 .empty p {
   color: var(--muted);
+
   margin: 0;
+
+  font-size: 14px;
 }
 
-/* Background orbs */
+/* =========================
+   BACKGROUND ORBS
+========================= */
 
 .orb {
   position: fixed;
 
   border-radius: 50%;
 
-  filter: blur(3px);
+  filter: blur(8px);
 
   pointer-events: none;
+
+  z-index: 0;
 }
 
 .orb-one {
-  width: 240px;
-  height: 240px;
+  width: 280px;
+  height: 280px;
 
-  top: 14%;
-  right: -100px;
+  top: 10%;
+  right: -130px;
 
-  background: rgba(157, 124, 255, 0.10);
+  background:
+    radial-gradient(
+      circle,
+      rgba(37, 99, 235, 0.10),
+      transparent 70%
+    );
 }
 
 .orb-two {
-  width: 180px;
-  height: 180px;
+  width: 220px;
+  height: 220px;
 
-  bottom: 10%;
-  left: -80px;
+  bottom: 8%;
+  left: -110px;
 
-  background: rgba(97, 215, 255, 0.08);
+  background:
+    radial-gradient(
+      circle,
+      rgba(6, 182, 212, 0.09),
+      transparent 70%
+    );
 }
 
-/* Mobile */
+/* =========================
+   MOBILE
+========================= */
 
 @media (max-width: 700px) {
 
   .app-shell {
+    width: 92%;
+
     padding-top: 32px;
+  }
+
+  .hero {
+    align-items: flex-start;
   }
 
   .hero-cube {
     width: 64px;
     height: 64px;
 
-    border-radius: 20px;
+    border-radius: 19px;
+
+    font-size: 27px;
+  }
+
+  h1 {
+    font-size: clamp(42px, 13vw, 60px);
   }
 
   .composer form {
@@ -456,4 +650,13 @@ button:active {
   .stats div {
     padding: 16px;
   }
+
+  .stats strong {
+    font-size: 23px;
+  }
+
+  .task {
+    padding: 15px;
+  }
 }
+```
