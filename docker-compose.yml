@@ -1,6 +1,6 @@
 services:
   app:
-    image: https://github.com/ameeshavijayanvs/docker-jenkins.git:latest
+    image: ameeshavijayanvs/two-tier-todo:latest
     container_name: todo-app
     restart: always
     ports:
